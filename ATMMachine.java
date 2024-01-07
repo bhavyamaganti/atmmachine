@@ -2,15 +2,12 @@ import java.util.Scanner;
 
 class BankAccount {
     private double balance;
-
     public BankAccount(double initialBalance) {
         this.balance = initialBalance;
     }
-
     public double getBalance() {
         return balance;
     }
-
     public void deposit(double amount) {
         if (amount > 0) {
             balance += amount;
@@ -19,7 +16,6 @@ class BankAccount {
             System.out.println("Invalid deposit amount");
         }
     }
-
     public void withdraw(double amount) {
         if (amount > 0 && amount <= balance) {
             balance -= amount;
@@ -29,7 +25,6 @@ class BankAccount {
         }
     }
 }
-
 class ATM {
     private BankAccount account;
     private Scanner scanner;
@@ -38,7 +33,6 @@ class ATM {
         this.account = account;
         this.scanner = new Scanner(System.in);
     }
-
     public void displayMenu() {
         System.out.println("\nATM Menu:");
         System.out.println("1. Check Balance");
@@ -72,34 +66,27 @@ class ATM {
             }
         } while (choice != 4);
     }
-
     private void checkBalance() {
         double balance = account.getBalance();
         System.out.println("Current balance: " + balance);
     }
-
     private void deposit() {
         System.out.print("Enter deposit amount: ");
         double amount = scanner.nextDouble();
         account.deposit(amount);
     }
-
     private void withdraw() {
         System.out.print("Enter withdrawal amount: ");
         double amount = scanner.nextDouble();
         account.withdraw(amount);
     }
 }
-
 public class ATMMachine {
     public static void main(String[] args) {
         // Create a bank account with an initial balance
-        BankAccount userAccount = new BankAccount(1000.0);
-
+        BankAccount userAccount = new BankAccount(100000.0);
         // Create an ATM instance linked to the user's bank account
         ATM atm = new ATM(userAccount);
-
-        // Perform transactions using the ATM
         atm.performTransaction();
     }
 }
